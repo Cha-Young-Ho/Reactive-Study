@@ -16,18 +16,18 @@ public class AsyncProgrammingV4 {
 
         es.submit(() -> {
             try {
-                Thread.sleep(10000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
             }
-            System.out.println("start");
-            callback("finish");
+            System.out.println("start --- Thread = " + Thread.currentThread().getName());
+            callback("finish --- Thread = " + Thread.currentThread().getName());
         });
 
-        System.out.println("exit");
+        System.out.println("exit --- Thread =" + Thread.currentThread().getName());
         es.shutdown();
     }
 
     public static void callback(String str){
-        System.out.println("작업 끝");
+        System.out.println("작업 끝 --- Thread = " + Thread.currentThread().getName());
     }
 }

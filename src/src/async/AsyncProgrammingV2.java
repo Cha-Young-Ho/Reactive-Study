@@ -19,11 +19,12 @@ public class AsyncProgrammingV2 {
 
         Future<String> f =  es.submit(() ->{
             Thread.sleep(2000);
-            System.out.println("start");
+            System.out.println("start --- Thread = " + Thread.currentThread().getName());
             return "finish";
         });
-        System.out.println(f.get()); // blocking
-        System.out.println("exit");
+        System.out.println("exit -- Thread = " + Thread.currentThread().getName());
+        System.out.println("결과 값 = " + f.get() + " --- Thread = " + Thread.currentThread().getName()); // blocking
+        es.shutdown();
 
     }
 }
