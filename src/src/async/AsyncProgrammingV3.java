@@ -17,17 +17,17 @@ public class AsyncProgrammingV3 {
 
         Future<String> f = es.submit(() ->{
             Thread.sleep(8000);
-            System.out.println("start");
+            System.out.println("start --- Thread = " + Thread.currentThread().getName());
             return "finish";
         });
 
-        System.out.println("exit");
+        System.out.println("exit --- Thread = " + Thread.currentThread().getName());
 
         while(!f.isDone()){
-            System.out.println("do another task~");
+            System.out.println("do another task~ --- Thread = " + Thread.currentThread().getName());
             Thread.sleep(2000);
         }
-        System.out.println(f.get());
+        System.out.println("결과 값 = " + f.get() + " --- Thread = " + Thread.currentThread().getName());
         es.shutdown();
     }
 }

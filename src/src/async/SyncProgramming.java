@@ -10,9 +10,9 @@ public class SyncProgramming {
 
     public static void main(String[] args) throws InterruptedException {
 
-        Thread.sleep(20000);
-        System.out.println("start");
+        Thread.sleep(2000);
+        System.out.println("start --- Thread = " + Thread.currentThread().getName());
 
-        System.out.println("Exit");
+        System.out.println("exit --- Thread = " + Thread.currentThread().getName());
     }
 }

@@ -6,7 +6,7 @@ import java.util.concurrent.*;
 public class AsyncProgrammingV6 {
 
     interface SuccessCallback{
-        void success(String result);
+        void onSuccess(String result);
     }
 
     interface ExceptionCallback{
@@ -26,7 +26,7 @@ public class AsyncProgrammingV6 {
         @Override
         protected void done() {
             try {
-                System.out.println(get());
+                sc.onSuccess(get());
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             } catch (ExecutionException e) {

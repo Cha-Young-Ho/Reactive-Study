@@ -21,9 +21,9 @@ public class AsyncProgramming {
             } catch (InterruptedException e) {
             }
 
-            System.out.println("start");
+            System.out.println("start --- Thread name = " +  Thread.currentThread().getName());
         });
 
-        System.out.println("exit");
+        System.out.println("exit --- Thread name = " + Thread.currentThread().getName());
     }
 }
