@@ -1,0 +1,57 @@
+package async;
+
+import java.util.Objects;
+import java.util.concurrent.*;
+
+public class AsyncProgrammingV6 {
+
+    interface SuccessCallback{
+        void success(String result);
+    }
+
+    interface ExceptionCallback{
+        void onError(Throwable t);
+    }
+
+    public static class CallbackFutureTask extends FutureTask<String>{
+        SuccessCallback sc;
+        ExceptionCallback ec;
+
+        public CallbackFutureTask(Callable<String> callable, SuccessCallback sc, ExceptionCallback ec){
+            super(callable);
+            this.sc = Objects.requireNonNull(sc);
+            this.ec = Objects.requireNonNull(ec);
+        }
+
+        @Override
+        protected void done() {
+            try {
+                System.out.println(get());
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            } catch (ExecutionException e) {
+                ec.onError(e.getCause());
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        ExecutorService es = Executors.newCachedThreadPool();
+
+        CallbackFutureTask f = new CallbackFutureTask(() ->{
+            Thread.sleep(2000);
+            //if(true) throw new RuntimeException("Async Error");
+            System.out.println("start");
+            return "finish";
+        }, System.out :: println, e -> {
+            System.out.println("Error: " + e.getMessage());
+        });
+
+        es.submit(f);
+
+        System.out.println("exit");
+
+        es.shutdown();
+
+    }
+}
