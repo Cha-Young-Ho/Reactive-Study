@@ -1,4 +1,4 @@
-package com.example.asyncEx;
+package com.example.asyncEx.another;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StopWatch;
