@@ -17,12 +17,6 @@ if you have another question or find wrong content, please, register the issue.
 4. typing code
 5. pull & request
 
-# Navigator
-
-1. [Basic Code]()
-2. [Observer Pattern]()
-3.
-
 ## 🐳 Thank you for visiting this repository.
 
 
